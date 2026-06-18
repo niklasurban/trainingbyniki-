@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Coaching · TrainingByNiki · Niklas Urban</title>
+<meta name="description" content="Persönliches Online-Coaching mit Niklas Urban – individueller Trainingsplan, Ernährungsstrategie und wöchentliche Betreuung. Jetzt kostenloses Erstgespräch buchen.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #E8470A; --orange-dark: #c43a08;
+    --orange-glow: rgba(232,71,10,.12);
+    --black: #0d0d0d; --dark: #141414; --dark2: #1c1c1c;
+    --border: #242424; --gray: #777; --white: #fff;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--black); color: var(--white);
+    -webkit-font-smoothing: antialiased; line-height: 1.6;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,13,.95); backdrop-filter: blur(14px);
+    border-bottom: 1px solid #1e1e1e;
+    padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-logo {
+    width: 34px; height: 34px; background: var(--orange); border-radius: 50%;
+    font-weight: 900; font-size: 12px; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-name { font-weight: 800; font-size: 13px; letter-spacing: .5px; }
+  .nav-btn {
+    background: var(--orange); color: #fff; border: none; border-radius: 8px;
+    padding: 9px 18px; font-size: 13px; font-weight: 700; cursor: pointer;
+    text-decoration: none; transition: background .18s;
+  }
+  .nav-btn:hover { background: var(--orange-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 110px 24px 70px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(232,71,10,.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 700px; width: 100%; text-align: center; position: relative; z-index: 1; }
+
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange-glow); border: 1px solid rgba(232,71,10,.25);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 11px; font-weight: 700; color: var(--orange);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px;
+  }
+  .pulse { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+
+  .hero h1 {
+    font-size: clamp(30px, 6vw, 56px); font-weight: 900;
+    line-height: 1.07; letter-spacing: -1.5px; margin-bottom: 18px;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; display: block; }
+  .hero-sub { font-size: 16px; color: #999; line-height: 1.7; margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; }
+
+  .hero-cta-row { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .btn-primary {
+    display: inline-block; background: var(--orange); color: #fff;
+    text-decoration: none; border-radius: 12px; padding: 18px 36px;
+    font-size: 16px; font-weight: 800; transition: background .18s, transform .1s;
+    letter-spacing: -0.3px;
+  }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .btn-micro { font-size: 12px; color: #444; }
+
+  /* TRUST */
+  .trust-strip {
+    background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 22px 24px;
+  }
+  .trust-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  }
+  .trust-item { text-align: center; padding: 8px 24px; }
+  .trust-val { font-size: 18px; font-weight: 900; }
+  .trust-val .o { color: var(--orange); }
+  .trust-desc { font-size: 10px; color: #555; margin-top: 2px; }
+  .trust-sep { width: 1px; height: 30px; background: #222; }
+  @media(max-width:500px) { .trust-sep { display: none; } .trust-item { padding: 8px 12px; } }
+
+  /* SECTIONS */
+  .section { padding: 76px 24px; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .section-h { font-size: clamp(22px, 4vw, 32px); font-weight: 900; letter-spacing: -0.8px; line-height: 1.12; margin-bottom: 12px; }
+  .divider { width: 36px; height: 3px; background: var(--orange); border-radius: 2px; margin: 14px 0 28px; }
+
+  /* WAS IM COACHING */
+  .coaching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width:540px) { .coaching-grid { grid-template-columns: 1fr; } }
+
+  .coaching-card {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; display: flex; gap: 14px; align-items: flex-start;
+    transition: border-color .2s;
+  }
+  .coaching-card:hover { border-color: rgba(232,71,10,.3); }
+  .coaching-icon {
+    width: 40px; height: 40px; background: var(--orange-glow);
+    border: 1px solid rgba(232,71,10,.2); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .coaching-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .coaching-card p { font-size: 12px; color: #666; line-height: 1.55; }
+
+  /* ABLAUF */
+  .ablauf-section { background: var(--dark); padding: 76px 24px; }
+  .ablauf-list { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
+  .ablauf-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--dark2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px;
+  }
+  .ablauf-num {
+    font-size: 28px; font-weight: 900; color: var(--orange);
+    opacity: .3; line-height: 1; flex-shrink: 0; width: 36px;
+  }
+  .ablauf-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .ablauf-item p { font-size: 12px; color: #777; line-height: 1.55; }
+
+  /* FÜR WEN */
+  .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+  @media(max-width:520px) { .forwho-grid { grid-template-columns: 1fr; } }
+  .forwho-card {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .forwho-check {
+    width: 22px; height: 22px; background: var(--orange-glow);
+    border: 1px solid rgba(232,71,10,.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 1px;
+  }
+  .forwho-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .forwho-card p { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* BEWERTUNGEN */
+  .reviews-section { background: var(--dark); padding: 76px 24px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
+  @media(max-width:620px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:400px) { .reviews-grid { grid-template-columns: 1fr; } }
+  .review-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stars { color: #f59e0b; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
+  .review-text { font-size: 13px; color: #bbb; line-height: 1.65; margin-bottom: 14px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 10px; }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--orange);
+    font-weight: 800; font-size: 12px; color: #fff;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .review-name { font-size: 13px; font-weight: 700; }
+  .review-age { font-size: 11px; color: #555; }
+
+  /* CALENDLY SECTION */
+  .calendly-section { padding: 76px 24px; }
+  .calendly-inner { max-width: 760px; margin: 0 auto; }
+  .calendly-header { text-align: center; margin-bottom: 36px; }
+
+  .calendly-widget-wrapper {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 18px;
+    overflow: hidden; min-height: 700px;
+  }
+
+  /* FINAL CTA */
+  .final-cta { padding: 80px 24px; text-align: center; position: relative; overflow: hidden; }
+  .final-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,71,10,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta-inner { max-width: 540px; margin: 0 auto; position: relative; z-index: 1; }
+  .final-cta h2 { font-size: clamp(24px, 5vw, 38px); font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 12px; }
+  .final-cta h2 em { color: var(--orange); font-style: normal; }
+  .final-cta p { font-size: 14px; color: #777; margin-bottom: 28px; line-height: 1.7; }
+
+  footer { border-top: 1px solid #161616; padding: 28px 24px; text-align: center; color: #333; font-size: 12px; }
+  .footer-brand { color: var(--orange); font-weight: 800; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
+  footer a { color: #3a3a3a; text-decoration: none; }
+  footer a:hover { color: var(--orange); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">TN</div>
+    <div class="nav-name">TRAININGBYNIKI</div>
+  </div>
+  <a href="#calendly" class="nav-btn">Erstgespräch buchen →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label"><span class="pulse"></span>Online Coaching · Persönliche Betreuung</div>
+    <h1>Stärker, beweglicher,<br><em>schmerzfreier –<br>mit mir an deiner Seite.</em></h1>
+    <p class="hero-sub">Individuelles Online-Coaching das sich deinem Alltag anpasst – nicht umgekehrt. Kein Fitnessstudio nötig, kein fester Termin vor Ort.</p>
+    <div class="hero-cta-row">
+      <a href="#calendly" class="btn-primary">Kostenloses Erstgespräch buchen →</a>
+      <span class="btn-micro">30 Minuten · kostenlos · unverbindlich · per Video oder Telefon</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-val"><span class="o">★</span> 5,0</div><div class="trust-desc">Google Bewertungen</div></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><div class="trust-val">8<span class="o">+</span></div><div class="trust-desc">Jahre Erfahrung</div></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><div class="trust-val">200<span class="o">+</span></div><div class="trust-desc">Betreute Klienten</div></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><div class="trust-val"><span class="o">B.A.</span></div><div class="trust-desc">Fitnessökonomie</div></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><div class="trust-val"><span class="o">🏆</span></div><div class="trust-desc">Südd. Bodybuilding-Meister</div></div>
+  </div>
+</div>
+
+<!-- WAS IM COACHING -->
+<section class="section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Was enthalten ist</div>
+    <h2 class="section-h">Alles was du brauchst –<br>individuell auf dich abgestimmt.</h2>
+    <div class="divider"></div>
+    <div class="coaching-grid">
+      <div class="coaching-card">
+        <div class="coaching-icon">💪</div>
+        <div><h3>Individueller Trainingsplan</h3><p>Abgestimmt auf deine Beschwerden, dein Ziel und deine verfügbare Zeit. Kein Einheitsplan.</p></div>
+      </div>
+      <div class="coaching-card">
+        <div class="coaching-icon">🥗</div>
+        <div><h3>Persönliche Ernährungsstrategie</h3><p>Kein Kalorienzählen, kein Verzicht. Alltagstauglich, realistisch und auf dich zugeschnitten.</p></div>
+      </div>
+      <div class="coaching-card">
+        <div class="coaching-icon">📱</div>
+        <div><h3>Wöchentliche Check-ins</h3><p>Regelmäßige Gespräche per Video oder Chat – damit du nie alleine kämpfst.</p></div>
+      </div>
+      <div class="coaching-card">
+        <div class="coaching-icon">💬</div>
+        <div><h3>Direkte Erreichbarkeit</h3><p>WhatsApp-Support bei Fragen, Unsicherheiten oder wenn etwas nicht klappt.</p></div>
+      </div>
+      <div class="coaching-card">
+        <div class="coaching-icon">🔄</div>
+        <div><h3>Regelmäßige Plananpassungen</h3><p>Dein Körper verändert sich – der Plan passt sich mit. Kein statisches Programm.</p></div>
+      </div>
+      <div class="coaching-card">
+        <div class="coaching-icon">🎥</div>
+        <div><h3>Videoanleitungen</h3><p>Alle Übungen als kurze Erklärvideos – damit du jede Bewegung korrekt ausführst.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="ablauf-section">
+  <div class="section-inner reveal">
+    <div class="eyebrow">So läuft es ab</div>
+    <h2 class="section-h">Von Erstgespräch bis Ergebnis –<br>in 4 einfachen Schritten.</h2>
+    <div class="divider"></div>
+    <div class="ablauf-list">
+      <div class="ablauf-item">
+        <div class="ablauf-num">1</div>
+        <div><h3>Kostenloses Erstgespräch (30 Min)</h3><p>Wir schauen uns gemeinsam an wo du stehst, was dich aufhält und ob eine Zusammenarbeit sinnvoll ist. Kein Druck, keine Verpflichtung.</p></div>
+      </div>
+      <div class="ablauf-item">
+        <div class="ablauf-num">2</div>
+        <div><h3>Individueller Plan wird erstellt</h3><p>Ich erstelle deinen persönlichen Trainings- und Ernährungsplan – abgestimmt auf deinen Körper, deine Beschwerden und deinen Alltag.</p></div>
+      </div>
+      <div class="ablauf-item">
+        <div class="ablauf-num">3</div>
+        <div><h3>Du startest – ich begleite dich</h3><p>Wöchentliche Check-ins, direkte Erreichbarkeit und regelmäßige Anpassungen sorgen dafür, dass du immer auf Kurs bleibst.</p></div>
+      </div>
+      <div class="ablauf-item">
+        <div class="ablauf-num">4</div>
+        <div><h3>Echte Ergebnisse, nachhaltig</h3><p>Keine schnellen Tricks. Ein System das funktioniert – auch wenn der Alltag mal stressiger wird.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÜR WEN -->
+<section class="section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Für wen ist das Coaching?</div>
+    <h2 class="section-h">Mein Coaching funktioniert<br>besonders gut für dich, wenn…</h2>
+    <div class="divider"></div>
+    <div class="forwho-grid">
+      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du 40+ bist und unter Rücken-, Knie- oder Schulterschmerzen leidest</h3><p>Training das Schmerzen reduziert statt sie zu verstärken – das ist meine Spezialität.</p></div></div>
+      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du wenig Zeit hast aber etwas verändern willst</h3><p>30–45 Minuten pro Einheit, 3x pro Woche. Kein Fitnessstudio nötig.</p></div></div>
+      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du Einsteiger oder Wiedereinsteiger bist</h3><p>Du brauchst keine Vorkenntnisse. Wir starten genau dort wo du gerade stehst.</p></div></div>
+      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du endlich nachhaltige Ergebnisse willst</h3><p>Kein Quick-Fix, kein Extremprogramm. Ein System das dauerhaft funktioniert.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERTUNGEN -->
+<section class="reviews-section">
+  <div class="section-inner reveal">
+    <div class="eyebrow">Das sagen Klienten</div>
+    <h2 class="section-h">Echte Menschen. Echte Ergebnisse.</h2>
+    <div class="divider"></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Ich hatte ständig Rückenschmerzen und war unsicher beim Training. Mit Niklas fühle ich mich endlich wieder stabil und habe deutlich weniger Beschwerden."</p>
+        <div class="review-author"><div class="avatar">G</div><div><div class="review-name">Gabi H.</div><div class="review-age">62 Jahre</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Ich hätte nicht gedacht, dass sich mein Körper in so kurzer Zeit so verändern kann. Ich bin beweglicher, stärker und fühle mich im Alltag viel besser."</p>
+        <div class="review-author"><div class="avatar">H</div><div><div class="review-name">Herta G.</div><div class="review-age">58 Jahre</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Was mir am meisten geholfen hat, war die persönliche Betreuung. Ich weiß jetzt genau, was ich tun muss, und habe wieder Vertrauen in meinen Körper."</p>
+        <div class="review-author"><div class="avatar">C</div><div><div class="review-name">Claudia K.</div><div class="review-age">56 Jahre</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDLY -->
+<section class="calendly-section" id="calendly">
+  <div class="calendly-inner reveal">
+    <div class="calendly-header">
+      <div class="eyebrow">Erstgespräch buchen</div>
+      <h2 class="section-h">Wähle deinen Wunschtermin.</h2>
+      <div class="divider" style="margin: 14px auto 0;"></div>
+      <p style="font-size:14px; color:#777; margin-top:16px; line-height:1.65;">30 Minuten · kostenlos · unverbindlich · per Video oder Telefon<br>Kein Druck, kein Verkaufsgespräch – nur ein ehrliches Gespräch.</p>
+    </div>
+    <div class="calendly-widget-wrapper">
+      <iframe
+        src="https://calendly.com/niklas-urban/30min?embed_domain=trainingbyniki.de&embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1"
+        width="100%"
+        height="700"
+        frameborder="0"
+        style="border:none; background:transparent;">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta reveal">
+  <div class="final-cta-inner">
+    <h2>Lieber erst per<br><em>E-Mail oder Telefon?</em></h2>
+    <p>Kein Problem – schreib mir einfach oder ruf an. Ich melde mich innerhalb von 24 Stunden.</p>
+    <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+      <a href="mailto:trainingbyniki@trainingbyniki.de" class="btn-primary">📩 trainingbyniki@trainingbyniki.de</a>
+      <a href="tel:017663825343" style="color:#555; font-size:13px; text-decoration:none;">📱 0176 63825343</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">TRAININGBYNIKI</div>
+  <p style="margin-bottom:8px;">Niklas Urban · Personal Trainer & Gesundheitscoach · Bad Boll</p>
+  <p>
+    <a href="mailto:trainingbyniki@trainingbyniki.de">trainingbyniki@trainingbyniki.de</a> &nbsp;·&nbsp;
+    <a href="tel:017663825343">0176 63825343</a> &nbsp;·&nbsp;
+    <a href="https://trainingbyniki.team-energy-up.de/impressum/">Impressum</a> &nbsp;·&nbsp;
+    <a href="https://trainingbyniki.team-energy-up.de/datenschutz/">Datenschutz</a>
+  </p>
+  <p style="margin-top:14px; color:#1e1e1e;">© 2026 Training by Niki · Alle Rechte vorbehalten</p>
+</footer>
+
+<script>
+  document.querySelector('.nav-btn').addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('#calendly').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
