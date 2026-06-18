@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainingByNiki – Dein Kauf war erfolgreich!</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #E8470A; --orange-dark: #c43a08;
+    --orange-glow: rgba(232,71,10,.12);
+    --black: #0d0d0d; --dark: #141414; --dark2: #1c1c1c;
+    --border: #242424; --gray: #777; --white: #fff;
+  }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--black); color: var(--white);
+    -webkit-font-smoothing: antialiased; line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    background: rgba(13,13,13,.96); border-bottom: 1px solid #1e1e1e;
+    padding: 0 24px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-logo {
+    width: 34px; height: 34px; background: var(--orange); border-radius: 50%;
+    font-weight: 900; font-size: 12px; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-name { font-weight: 800; font-size: 13px; letter-spacing: .5px; }
+
+  .success-banner {
+    background: linear-gradient(135deg, #0a1f0a, #0d0d0d);
+    border-bottom: 1px solid #1a2e1a;
+    padding: 14px 24px; text-align: center;
+  }
+  .success-inner {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 13px; color: #5cb85c;
+  }
+  .check-circle {
+    width: 22px; height: 22px; background: #1a3a1a; border: 1px solid #2a5a2a;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+
+  .hero {
+    padding: 70px 24px 30px; text-align: center;
+    max-width: 640px; margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange-glow); border: 1px solid rgba(232,71,10,.25);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 11px; font-weight: 700; color: var(--orange);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 44px); font-weight: 900;
+    line-height: 1.1; letter-spacing: -1.2px; margin-bottom: 14px;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero-sub { font-size: 15px; color: #888; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+  .download-section { padding: 20px 24px 60px; }
+  .download-inner { max-width: 600px; margin: 0 auto; }
+
+  .download-card {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 18px;
+    padding: 36px 32px; text-align: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,.5);
+  }
+
+  .book-visual { margin: 0 auto 24px; width: 110px; }
+  .book-cover {
+    width: 110px; height: 150px; background: var(--orange);
+    border-radius: 4px 10px 10px 4px; position: relative; margin: 0 auto;
+    box-shadow: -4px 4px 0 #c43a08, -6px 6px 0 #a33207, 6px 4px 20px rgba(0,0,0,.6);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 12px 8px; text-align: center;
+    border-left: 6px solid rgba(0,0,0,.2);
+  }
+  .book-cover .book-num { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
+  .book-cover .book-weeks { font-size: 9px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: 1px; margin-top: 2px; }
+  .book-cover .book-title { font-size: 8px; font-weight: 700; color: rgba(255,255,255,.9); margin-top: 6px; line-height: 1.3; }
+  .book-cover .book-sub { font-size: 7px; color: rgba(255,255,255,.6); margin-top: 3px; line-height: 1.3; }
+
+  .download-card h2 { font-size: 20px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .download-card p.desc { font-size: 13px; color: #888; margin-bottom: 28px; line-height: 1.6; }
+
+  .download-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; background: var(--orange); color: #fff; text-decoration: none;
+    border-radius: 12px; padding: 18px; font-size: 16px; font-weight: 800;
+    transition: background .18s, transform .1s; letter-spacing: -0.2px;
+  }
+  .download-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .download-icon { font-size: 18px; }
+
+  .download-micro {
+    margin-top: 14px; font-size: 11px; color: #444; line-height: 1.6;
+  }
+
+  .next-steps {
+    margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border);
+    text-align: left;
+  }
+  .next-steps h3 {
+    font-size: 12px; font-weight: 700; color: var(--orange);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; text-align: center;
+  }
+  .step-item {
+    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
+  }
+  .step-num {
+    width: 22px; height: 22px; background: var(--orange-glow);
+    border: 1px solid rgba(232,71,10,.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--orange); font-weight: 800; flex-shrink: 0; margin-top: 1px;
+  }
+  .step-item p { font-size: 13px; color: #aaa; line-height: 1.55; }
+  .step-item strong { color: #ddd; }
+
+  .coaching-box {
+    margin-top: 36px; background: var(--black); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; text-align: center;
+  }
+  .coaching-box h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+  .coaching-box p { font-size: 13px; color: #888; margin-bottom: 18px; line-height: 1.6; }
+  .coaching-btn {
+    display: inline-block; background: transparent; color: var(--orange);
+    border: 1.5px solid var(--orange); text-decoration: none;
+    border-radius: 10px; padding: 12px 24px; font-size: 13px; font-weight: 700;
+    transition: background .18s, color .18s;
+  }
+  .coaching-btn:hover { background: var(--orange); color: #fff; }
+
+  footer {
+    border-top: 1px solid #161616; padding: 28px 24px;
+    text-align: center; color: #333; font-size: 12px;
+  }
+  .footer-brand { color: var(--orange); font-weight: 800; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
+  footer a { color: #3a3a3a; text-decoration: none; }
+  footer a:hover { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">TN</div>
+    <div class="nav-name">TRAININGBYNIKI</div>
+  </div>
+</nav>
+
+<div class="success-banner">
+  <div class="success-inner">
+    <div class="check-circle">✓</div>
+    Deine Zahlung war erfolgreich – vielen Dank für deinen Kauf!
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">🎉 Kauf bestätigt</div>
+  <h1>Willkommen bei<br><em>Stark & Schmerzfrei</em></h1>
+  <p class="hero-sub">Du hast den ersten und wichtigsten Schritt gemacht. Jetzt lad dir dein 8-Wochen-System herunter und starte direkt los.</p>
+</div>
+
+<section class="download-section">
+  <div class="download-inner">
+    <div class="download-card">
+      <div class="book-visual">
+        <div class="book-cover">
+          <div class="book-num">8</div>
+          <div class="book-weeks">WOCHEN</div>
+          <div class="book-title">STARK &<br>SCHMERZFREI</div>
+          <div class="book-sub">TrainingByNiki</div>
+        </div>
+      </div>
+      <h2>8 Wochen Stark & Schmerzfrei</h2>
+      <p class="desc">Dein komplettes 3-Phasen-System als PDF – bereit zum Download.</p>
+
+      <a href="TrainingByNiki_8Wochen_Stark_Schmerzfrei.pdf" download class="download-btn">
+        <span class="download-icon">⬇</span> Jetzt herunterladen
+      </a>
+      <div class="download-micro">
+        PDF · ca. 12 Seiten · Funktioniert auf allen Geräten<br>
+        Falls der Download nicht startet, <a href="TrainingByNiki_8Wochen_Stark_Schmerzfrei.pdf" target="_blank" style="color:#666; text-decoration:underline;">hier klicken</a>
+      </div>
+
+      <div class="next-steps">
+        <h3>Deine ersten Schritte</h3>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <p><strong>PDF herunterladen und speichern</strong> – am besten direkt auf deinem Handy oder Tablet, damit du es beim Training immer dabei hast.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <p><strong>Phase 1 lesen</strong> – die ersten 2 Wochen starten mit Mobilität. Kein Zeitdruck, einfach in Ruhe durchlesen.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <p><strong>Heute noch den ersten Tag starten</strong> – je früher du beginnst, desto schneller siehst du Fortschritte.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="coaching-box">
+      <h3>Willst du dabei persönlich begleitet werden?</h3>
+      <p>Im 1:1 Online-Coaching passe ich den Plan individuell an dich an – mit wöchentlichen Check-ins und direktem Kontakt zu mir.</p>
+      <a href="coaching.html" class="coaching-btn">Mehr zum Online-Coaching →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">TRAININGBYNIKI</div>
+  <p style="margin-bottom:8px;">Niklas Urban · Personal Trainer & Gesundheitscoach · Bad Boll</p>
+  <p>
+    <a href="mailto:trainingbyniki@trainingbyniki.de">trainingbyniki@trainingbyniki.de</a> &nbsp;·&nbsp;
+    <a href="tel:017663825343">0176 63825343</a> &nbsp;·&nbsp;
+    <a href="https://trainingbyniki.team-energy-up.de/impressum/">Impressum</a> &nbsp;·&nbsp;
+    <a href="https://trainingbyniki.team-energy-up.de/datenschutz/">Datenschutz</a>
+  </p>
+  <p style="margin-top:14px; color:#1e1e1e;">© 2026 Training by Niki · Alle Rechte vorbehalten</p>
+</footer>
+
+</body>
+</html>
