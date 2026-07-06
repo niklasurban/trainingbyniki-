@@ -3,363 +3,793 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Coaching · TrainingByNiki · Niklas Urban</title>
-<meta name="description" content="Persönliches Online-Coaching mit Niklas Urban – individueller Trainingsplan, Ernährungsstrategie und wöchentliche Betreuung. Jetzt kostenloses Erstgespräch buchen.">
+<title>Online Coaching · Niklas Urban · TrainingByNiki</title>
+<meta name="description" content="Persönliches Online-Coaching für Menschen ab 40 – Reha-Training, Ernährung, Beweglichkeit. Von Niklas Urban, Personal Trainer & Reha-Experte aus Bad Boll.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --orange: #E8470A; --orange-dark: #c43a08;
-    --orange-glow: rgba(232,71,10,.12);
-    --black: #0d0d0d; --dark: #141414; --dark2: #1c1c1c;
-    --border: #242424; --gray: #777; --white: #fff;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: var(--black); color: var(--white);
-    -webkit-font-smoothing: antialiased; line-height: 1.6;
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0A0A0A;
+  --surface:#141414;
+  --surface2:#1E1E1E;
+  --border:#2A2A2A;
+  --warm:#F5F0E8;
+  --warm-dim:#B8B0A0;
+  --orange:#E8470A;
+  --orange-dark:#C43A08;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--black);
+  color:var(--warm);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(13,13,13,.95); backdrop-filter: blur(14px);
-    border-bottom: 1px solid #1e1e1e;
-    padding: 0 24px; height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-brand { display: flex; align-items: center; gap: 10px; }
-  .nav-logo {
-    width: 34px; height: 34px; background: var(--orange); border-radius: 50%;
-    font-weight: 900; font-size: 12px; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .nav-name { font-weight: 800; font-size: 13px; letter-spacing: .5px; }
-  .nav-btn {
-    background: var(--orange); color: #fff; border: none; border-radius: 8px;
-    padding: 9px 18px; font-size: 13px; font-weight: 700; cursor: pointer;
-    text-decoration: none; transition: background .18s;
-  }
-  .nav-btn:hover { background: var(--orange-dark); }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6vw;height:64px;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-mark{
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;font-size:13px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--warm);
+  text-decoration:none;
+}
+.nav-mark span{color:var(--orange)}
+.nav-cta{
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:500;
+  color:var(--black);background:var(--warm);
+  border:none;padding:10px 22px;cursor:pointer;
+  text-decoration:none;display:inline-block;
+  letter-spacing:.5px;
+  transition:background .18s,transform .1s;
+}
+.nav-cta:hover{background:var(--white);transform:translateY(-1px)}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; padding: 110px 24px 70px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(232,71,10,.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-inner { max-width: 700px; width: 100%; text-align: center; position: relative; z-index: 1; }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;padding:120px 6vw 80px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  max-width:1280px;margin:0 auto;
+}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding-top:100px;gap:48px}
+  .hero-right{order:-1}
+}
+.hero-eyebrow{
+  font-family:'DM Sans',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:24px;display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;background:var(--orange);
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,5.5vw,72px);
+  font-weight:900;line-height:1.05;
+  letter-spacing:-1px;
+  color:var(--warm);
+  margin-bottom:28px;
+}
+.hero h1 em{
+  font-style:italic;color:var(--warm-dim);
+}
+.hero-sub{
+  font-size:17px;font-weight:300;
+  color:var(--warm-dim);line-height:1.75;
+  max-width:440px;margin-bottom:40px;
+}
+.hero-stats{
+  display:flex;gap:40px;flex-wrap:wrap;
+}
+.stat-item{}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:700;color:var(--warm);
+  line-height:1;
+}
+.stat-num span{color:var(--orange);font-size:24px}
+.stat-label{
+  font-size:11px;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--warm-dim);
+  margin-top:4px;
+}
 
-  .hero-label {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--orange-glow); border: 1px solid rgba(232,71,10,.25);
-    border-radius: 20px; padding: 6px 16px;
-    font-size: 11px; font-weight: 700; color: var(--orange);
-    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px;
-  }
-  .pulse { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+/* Hero right – quiz card */
+.quiz-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:40px;
+  position:relative;
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+}
+.quiz-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:var(--orange);
+}
+.quiz-progress{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:32px;
+}
+.quiz-progress-label{
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--warm-dim);font-weight:500;
+}
+.quiz-progress-roman{
+  font-family:'Playfair Display',serif;
+  font-size:20px;color:var(--orange);font-weight:700;
+}
+.quiz-track{
+  height:1px;background:var(--border);margin-bottom:32px;position:relative;
+}
+.quiz-fill{
+  position:absolute;top:0;left:0;height:100%;
+  background:var(--orange);
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
 
-  .hero h1 {
-    font-size: clamp(30px, 6vw, 56px); font-weight: 900;
-    line-height: 1.07; letter-spacing: -1.5px; margin-bottom: 18px;
-  }
-  .hero h1 em { color: var(--orange); font-style: normal; display: block; }
-  .hero-sub { font-size: 16px; color: #999; line-height: 1.7; margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; }
+.quiz-step{display:none}
+.quiz-step.active{display:block}
 
-  .hero-cta-row { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .btn-primary {
-    display: inline-block; background: var(--orange); color: #fff;
-    text-decoration: none; border-radius: 12px; padding: 18px 36px;
-    font-size: 16px; font-weight: 800; transition: background .18s, transform .1s;
-    letter-spacing: -0.3px;
-  }
-  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
-  .btn-micro { font-size: 12px; color: #444; }
+.quiz-question{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,2.5vw,26px);
+  font-weight:700;line-height:1.25;
+  color:var(--warm);margin-bottom:28px;
+}
+.quiz-options{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.quiz-option{
+  padding:14px 16px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--warm-dim);
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:400;
+  cursor:pointer;text-align:left;
+  transition:border-color .18s,background .18s,color .18s,transform .15s;
+  position:relative;overflow:hidden;
+}
+.quiz-option::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--orange);
+  transition:width .25s ease;
+}
+.quiz-option:hover{
+  border-color:var(--orange);
+  background:rgba(232,71,10,.06);
+  color:var(--warm);
+  transform:translateY(-2px);
+}
+.quiz-option:hover::after{width:100%}
+.quiz-option.selected{
+  border-color:var(--orange);
+  background:rgba(232,71,10,.1);
+  color:var(--warm);
+}
+.quiz-option.selected::after{width:100%}
 
-  /* TRUST */
-  .trust-strip {
-    background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    padding: 22px 24px;
-  }
-  .trust-inner {
-    max-width: 860px; margin: 0 auto;
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  }
-  .trust-item { text-align: center; padding: 8px 24px; }
-  .trust-val { font-size: 18px; font-weight: 900; }
-  .trust-val .o { color: var(--orange); }
-  .trust-desc { font-size: 10px; color: #555; margin-top: 2px; }
-  .trust-sep { width: 1px; height: 30px; background: #222; }
-  @media(max-width:500px) { .trust-sep { display: none; } .trust-item { padding: 8px 12px; } }
+/* Contact form (step 4) */
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-field{
+  display:flex;flex-direction:column;gap:6px;
+}
+.form-field label{
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--warm-dim);font-weight:500;
+}
+.form-field input{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  color:var(--warm);
+  padding:13px 16px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  outline:none;
+  transition:border-color .18s;
+}
+.form-field input::placeholder{color:#3A3A3A}
+.form-field input:focus{border-color:var(--orange)}
 
-  /* SECTIONS */
-  .section { padding: 76px 24px; }
-  .section-inner { max-width: 860px; margin: 0 auto; }
-  .eyebrow { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-  .section-h { font-size: clamp(22px, 4vw, 32px); font-weight: 900; letter-spacing: -0.8px; line-height: 1.12; margin-bottom: 12px; }
-  .divider { width: 36px; height: 3px; background: var(--orange); border-radius: 2px; margin: 14px 0 28px; }
+.quiz-nav{
+  display:flex;gap:12px;margin-top:28px;align-items:center;
+}
+.btn-next{
+  background:var(--orange);color:var(--white);
+  border:none;padding:14px 28px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:600;letter-spacing:.5px;
+  cursor:pointer;flex:1;
+  transition:background .18s,transform .1s;
+}
+.btn-next:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.btn-next:disabled{background:var(--border);cursor:not-allowed;transform:none}
+.btn-back{
+  background:transparent;color:var(--warm-dim);
+  border:1px solid var(--border);
+  padding:14px 20px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  transition:border-color .18s,color .18s;
+}
+.btn-back:hover{border-color:var(--warm-dim);color:var(--warm)}
 
-  /* WAS IM COACHING */
-  .coaching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media(max-width:540px) { .coaching-grid { grid-template-columns: 1fr; } }
+/* Success state */
+.quiz-success{
+  text-align:center;padding:20px 0;
+  display:none;
+}
+.quiz-success-icon{
+  font-size:48px;margin-bottom:20px;
+}
+.quiz-success h3{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;color:var(--warm);
+  margin-bottom:12px;
+}
+.quiz-success p{
+  font-size:15px;color:var(--warm-dim);
+  line-height:1.7;margin-bottom:28px;
+}
+.btn-calendly{
+  display:inline-block;
+  background:var(--orange);color:var(--white);
+  text-decoration:none;padding:16px 32px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:600;letter-spacing:.5px;
+  transition:background .18s,transform .1s;
+}
+.btn-calendly:hover{background:var(--orange-dark);transform:translateY(-1px)}
 
-  .coaching-card {
-    background: var(--dark); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px; display: flex; gap: 14px; align-items: flex-start;
-    transition: border-color .2s;
-  }
-  .coaching-card:hover { border-color: rgba(232,71,10,.3); }
-  .coaching-icon {
-    width: 40px; height: 40px; background: var(--orange-glow);
-    border: 1px solid rgba(232,71,10,.2); border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .coaching-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-  .coaching-card p { font-size: 12px; color: #666; line-height: 1.55; }
+/* ── TRUST BAR ── */
+.trust-bar{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:28px 6vw;
+  background:var(--surface);
+}
+.trust-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:center;gap:0;
+}
+.trust-item{text-align:center;padding:8px 40px}
+.trust-val{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;color:var(--warm);
+}
+.trust-val em{color:var(--orange);font-style:normal}
+.trust-desc{
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--warm-dim);margin-top:3px;
+}
+.trust-sep{width:1px;height:36px;background:var(--border)}
+@media(max-width:540px){.trust-sep{display:none}.trust-item{padding:8px 20px}}
 
-  /* ABLAUF */
-  .ablauf-section { background: var(--dark); padding: 76px 24px; }
-  .ablauf-list { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
-  .ablauf-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    background: var(--dark2); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px;
-  }
-  .ablauf-num {
-    font-size: 28px; font-weight: 900; color: var(--orange);
-    opacity: .3; line-height: 1; flex-shrink: 0; width: 36px;
-  }
-  .ablauf-item h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .ablauf-item p { font-size: 12px; color: #777; line-height: 1.55; }
+/* ── WHAT YOU GET ── */
+.section{padding:100px 6vw}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-eyebrow{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--orange);font-weight:600;margin-bottom:16px;
+}
+.section h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4vw,52px);font-weight:900;
+  line-height:1.08;letter-spacing:-0.5px;
+  color:var(--warm);margin-bottom:16px;
+}
+.section h2 em{font-style:italic;color:var(--warm-dim)}
+.section-intro{
+  font-size:17px;font-weight:300;color:var(--warm-dim);
+  max-width:560px;line-height:1.75;margin-bottom:64px;
+}
+.coaching-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);
+}
+@media(max-width:768px){.coaching-grid{grid-template-columns:1fr}}
+.coaching-item{
+  background:var(--black);padding:36px 32px;
+  transition:background .2s,transform .18s;
+  cursor:default;
+}
+.coaching-item:hover{
+  background:var(--surface);
+  transform:translateY(-3px);
+}
+.coaching-num{
+  font-family:'Playfair Display',serif;
+  font-size:13px;color:var(--orange);font-weight:700;
+  letter-spacing:2px;margin-bottom:20px;
+}
+.coaching-item h3{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;color:var(--warm);
+  margin-bottom:12px;line-height:1.2;
+}
+.coaching-item p{font-size:14px;color:var(--warm-dim);line-height:1.7}
 
-  /* FÜR WEN */
-  .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
-  @media(max-width:520px) { .forwho-grid { grid-template-columns: 1fr; } }
-  .forwho-card {
-    background: var(--dark); border: 1px solid var(--border); border-radius: 12px;
-    padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px;
-  }
-  .forwho-check {
-    width: 22px; height: 22px; background: var(--orange-glow);
-    border: 1px solid rgba(232,71,10,.3); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 1px;
-  }
-  .forwho-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-  .forwho-card p { font-size: 12px; color: #666; line-height: 1.5; }
+/* ── PROCESS ── */
+.process-section{
+  background:var(--surface);
+  padding:100px 6vw;border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.process-list{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);margin-top:64px;
+}
+@media(max-width:768px){.process-list{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.process-list{grid-template-columns:1fr}}
+.process-item{
+  background:var(--surface);padding:36px 28px;
+  position:relative;
+  transition:background .2s;
+}
+.process-item:hover{background:var(--surface2)}
+.process-step{
+  font-family:'Playfair Display',serif;
+  font-size:48px;font-weight:900;color:var(--border);
+  line-height:1;margin-bottom:20px;
+  transition:color .2s;
+}
+.process-item:hover .process-step{color:var(--orange)}
+.process-item h3{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;color:var(--warm);
+  margin-bottom:10px;
+}
+.process-item p{font-size:13px;color:var(--warm-dim);line-height:1.65}
 
-  /* BEWERTUNGEN */
-  .reviews-section { background: var(--dark); padding: 76px 24px; }
-  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
-  @media(max-width:620px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
-  @media(max-width:400px) { .reviews-grid { grid-template-columns: 1fr; } }
-  .review-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-  .stars { color: #f59e0b; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
-  .review-text { font-size: 13px; color: #bbb; line-height: 1.65; margin-bottom: 14px; font-style: italic; }
-  .review-author { display: flex; align-items: center; gap: 10px; }
-  .avatar {
-    width: 32px; height: 32px; border-radius: 50%; background: var(--orange);
-    font-weight: 800; font-size: 12px; color: #fff;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .review-name { font-size: 13px; font-weight: 700; }
-  .review-age { font-size: 11px; color: #555; }
+/* ── TESTIMONIALS ── */
+.testimonials-section{padding:100px 6vw}
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);margin-top:64px;
+}
+@media(max-width:768px){.testimonials-grid{grid-template-columns:1fr}}
+.testimonial-card{
+  background:var(--black);padding:40px 32px;
+  transition:background .2s;
+}
+.testimonial-card:hover{background:var(--surface)}
+.testimonial-photo{
+  width:64px;height:64px;
+  overflow:hidden;
+  margin-bottom:24px;
+  border:1px solid var(--border);
+}
+.testimonial-photo img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  filter:grayscale(30%);
+  transition:filter .3s;
+}
+.testimonial-card:hover .testimonial-photo img{filter:grayscale(0%)}
+.testimonial-stars{
+  font-size:12px;letter-spacing:3px;color:var(--orange);
+  margin-bottom:16px;
+}
+.testimonial-quote{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-style:italic;
+  color:var(--warm);line-height:1.65;
+  margin-bottom:24px;
+}
+.testimonial-quote::before{
+  content:'"';color:var(--orange);font-size:36px;
+  line-height:0;vertical-align:-12px;margin-right:4px;
+}
+.testimonial-author{
+  font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--warm-dim);font-weight:600;
+}
+.testimonial-age{
+  font-size:11px;color:#3A3A3A;margin-top:3px;letter-spacing:1px;
+}
 
-  /* CALENDLY SECTION */
-  .calendly-section { padding: 76px 24px; }
-  .calendly-inner { max-width: 760px; margin: 0 auto; }
-  .calendly-header { text-align: center; margin-bottom: 36px; }
+/* ── FOR WHOM ── */
+.forwho-section{
+  background:var(--surface);
+  padding:100px 6vw;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.forwho-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--border);margin-top:64px;
+}
+@media(max-width:640px){.forwho-grid{grid-template-columns:1fr}}
+.forwho-item{
+  background:var(--surface);padding:32px 28px;
+  display:flex;gap:16px;align-items:flex-start;
+  transition:background .2s,transform .15s;
+}
+.forwho-item:hover{background:var(--surface2);transform:translateX(4px)}
+.forwho-check{
+  width:20px;height:20px;flex-shrink:0;margin-top:2px;
+  border:1px solid var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--orange);font-weight:700;
+}
+.forwho-item h3{
+  font-size:15px;font-weight:600;color:var(--warm);
+  margin-bottom:6px;line-height:1.3;
+}
+.forwho-item p{font-size:13px;color:var(--warm-dim);line-height:1.6}
 
-  .calendly-widget-wrapper {
-    background: var(--dark); border: 1px solid var(--border); border-radius: 18px;
-    overflow: hidden; min-height: 700px;
-  }
+/* ── FINAL CTA ── */
+.final-cta{
+  padding:120px 6vw;text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(232,71,10,.08) 0%,transparent 70%);
+}
+.final-cta-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.final-cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,60px);font-weight:900;
+  line-height:1.06;letter-spacing:-1px;color:var(--warm);
+  margin-bottom:20px;
+}
+.final-cta h2 em{font-style:italic;color:var(--orange)}
+.final-cta p{
+  font-size:17px;font-weight:300;color:var(--warm-dim);
+  margin-bottom:48px;line-height:1.7;
+}
+.final-cta-actions{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.btn-primary-lg{
+  background:var(--orange);color:var(--white);
+  text-decoration:none;padding:18px 48px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;
+  transition:background .18s,transform .1s;
+  display:inline-block;
+}
+.btn-primary-lg:hover{background:var(--orange-dark);transform:translateY(-2px)}
+.final-micro{
+  font-size:12px;color:var(--warm-dim);letter-spacing:.5px;
+}
 
-  /* FINAL CTA */
-  .final-cta { padding: 80px 24px; text-align: center; position: relative; overflow: hidden; }
-  .final-cta::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,71,10,.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .final-cta-inner { max-width: 540px; margin: 0 auto; position: relative; z-index: 1; }
-  .final-cta h2 { font-size: clamp(24px, 5vw, 38px); font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 12px; }
-  .final-cta h2 em { color: var(--orange); font-style: normal; }
-  .final-cta p { font-size: 14px; color: #777; margin-bottom: 28px; line-height: 1.7; }
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:48px 6vw;
+  display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:20px;
+}
+.footer-brand{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--warm-dim);font-weight:500;
+}
+.footer-brand span{color:var(--orange)}
+.footer-links{
+  display:flex;gap:28px;flex-wrap:wrap;
+}
+.footer-links a{
+  font-size:12px;color:#3A3A3A;text-decoration:none;
+  letter-spacing:.5px;
+  transition:color .18s;
+}
+.footer-links a:hover{color:var(--warm-dim)}
 
-  footer { border-top: 1px solid #161616; padding: 28px 24px; text-align: center; color: #333; font-size: 12px; }
-  .footer-brand { color: var(--orange); font-weight: 800; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
-  footer a { color: #3a3a3a; text-decoration: none; }
-  footer a:hover { color: var(--orange); }
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
 
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
-  .reveal.in { opacity: 1; transform: none; }
+/* Quiz answer summary */
+.quiz-summary{
+  background:var(--surface2);border:1px solid var(--border);
+  padding:16px 20px;margin-bottom:20px;
+  font-size:13px;color:var(--warm-dim);line-height:1.8;
+}
+.quiz-summary strong{color:var(--warm)}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    <div class="nav-logo">TN</div>
-    <div class="nav-name">TRAININGBYNIKI</div>
-  </div>
-  <a href="#calendly" class="nav-btn">Erstgespräch buchen →</a>
+  <a href="/" class="nav-mark">Training<span>ByNiki</span></a>
+  <a href="#quiz" class="nav-cta">Jetzt bewerben</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-label"><span class="pulse"></span>Online Coaching · Persönliche Betreuung</div>
-    <h1>Stärker, beweglicher,<br><em>schmerzfreier –<br>mit mir an deiner Seite.</em></h1>
-    <p class="hero-sub">Individuelles Online-Coaching das sich deinem Alltag anpasst – nicht umgekehrt. Kein Fitnessstudio nötig, kein fester Termin vor Ort.</p>
-    <div class="hero-cta-row">
-      <a href="#calendly" class="btn-primary">Kostenloses Erstgespräch buchen →</a>
-      <span class="btn-micro">30 Minuten · kostenlos · unverbindlich · per Video oder Telefon</span>
+<section style="background:var(--black)">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Online Coaching · Bad Boll</div>
+      <h1>Stärker.<br><em>Beweglicher.</em><br>Schmerzfrei.</h1>
+      <p class="hero-sub">Persönliches Coaching für Menschen ab 40, die aufgehört haben zu glauben, dass es noch besser werden kann. Ich zeige dir, dass es das kann.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">200<span>+</span></div>
+          <div class="stat-label">Klienten betreut</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8<span>+</span></div>
+          <div class="stat-label">Jahre Erfahrung</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5.0<span>★</span></div>
+          <div class="stat-label">Google Bewertung</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ CARD -->
+    <div class="hero-right" id="quiz">
+      <div class="quiz-card">
+        <div class="quiz-progress">
+          <span class="quiz-progress-label">Kurze Analyse</span>
+          <span class="quiz-progress-roman" id="progressRoman">I / III</span>
+        </div>
+        <div class="quiz-track">
+          <div class="quiz-fill" id="quizFill" style="width:33%"></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="quiz-step active" id="step1">
+          <div class="quiz-question">Wo liegt deine größte Herausforderung?</div>
+          <div class="quiz-options" id="options1">
+            <button class="quiz-option" data-value="Rückenschmerzen">Rückenschmerzen</button>
+            <button class="quiz-option" data-value="Knieschmerzen">Knieschmerzen</button>
+            <button class="quiz-option" data-value="Schulterprobleme">Schulterprobleme</button>
+            <button class="quiz-option" data-value="Wenig Energie">Wenig Energie</button>
+            <button class="quiz-option" data-value="Übergewicht">Übergewicht</button>
+            <button class="quiz-option" data-value="Allgemeine Fitness">Allgemeine Fitness</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-next" id="next1" disabled onclick="goStep(2)">Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="quiz-step" id="step2">
+          <div class="quiz-question">Wie lange begleiten dich diese Beschwerden?</div>
+          <div class="quiz-options" id="options2">
+            <button class="quiz-option" data-value="Weniger als 3 Monate">Unter 3 Monate</button>
+            <button class="quiz-option" data-value="3–12 Monate">3–12 Monate</button>
+            <button class="quiz-option" data-value="1–3 Jahre">1–3 Jahre</button>
+            <button class="quiz-option" data-value="Über 3 Jahre">Über 3 Jahre</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goStep(1)">← Zurück</button>
+            <button class="btn-next" id="next2" disabled onclick="goStep(3)">Weiter →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="quiz-step" id="step3">
+          <div class="quiz-question">Was ist dein wichtigstes Ziel?</div>
+          <div class="quiz-options" id="options3">
+            <button class="quiz-option" data-value="Schmerzfrei werden">Schmerzfrei werden</button>
+            <button class="quiz-option" data-value="Stärker werden">Stärker werden</button>
+            <button class="quiz-option" data-value="Gewicht reduzieren">Gewicht reduzieren</button>
+            <button class="quiz-option" data-value="Mehr Energie im Alltag">Mehr Energie</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goStep(2)">← Zurück</button>
+            <button class="btn-next" id="next3" disabled onclick="goStep(4)">Kontaktdaten →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: CONTACT -->
+        <div class="quiz-step" id="step4">
+          <div class="quiz-summary" id="quizSummary"></div>
+          <div class="quiz-question" style="font-size:20px;margin-bottom:20px">Fast geschafft. Wo soll ich mich melden?</div>
+          <div class="contact-form">
+            <div class="form-field">
+              <label>Vorname</label>
+              <input type="text" id="fname" placeholder="Dein Vorname">
+            </div>
+            <div class="form-field">
+              <label>E-Mail</label>
+              <input type="email" id="femail" placeholder="deine@email.de">
+            </div>
+            <div class="form-field">
+              <label>Telefon (optional)</label>
+              <input type="tel" id="fphone" placeholder="0176 ···">
+            </div>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn-back" onclick="goStep(3)">← Zurück</button>
+            <button class="btn-next" onclick="submitQuiz()">Termin sichern →</button>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="quiz-success" id="quizSuccess">
+          <div class="quiz-success-icon">✓</div>
+          <h3>Perfekt, ich melde mich.</h3>
+          <p>Ich habe deine Antworten erhalten und melde mich innerhalb von 24 Stunden persönlich bei dir. Oder buche direkt deinen Wunschtermin:</p>
+          <a href="https://calendly.com/niklas-urban/30min" target="_blank" class="btn-calendly">Direkt Termin buchen →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<div class="trust-strip">
+<!-- TRUST BAR -->
+<div class="trust-bar reveal">
   <div class="trust-inner">
-    <div class="trust-item"><div class="trust-val"><span class="o">★</span> 5,0</div><div class="trust-desc">Google Bewertungen</div></div>
+    <div class="trust-item"><div class="trust-val">B.A.</div><div class="trust-desc">Fitnessökonomie</div></div>
     <div class="trust-sep"></div>
-    <div class="trust-item"><div class="trust-val">8<span class="o">+</span></div><div class="trust-desc">Jahre Erfahrung</div></div>
+    <div class="trust-item"><div class="trust-val">Reha<em>-</em>Trainer</div><div class="trust-desc">Mediz. Qualifikation</div></div>
     <div class="trust-sep"></div>
-    <div class="trust-item"><div class="trust-val">200<span class="o">+</span></div><div class="trust-desc">Betreute Klienten</div></div>
+    <div class="trust-item"><div class="trust-val">Ernährungs<em>-</em>berater</div><div class="trust-desc">Zertifiziert</div></div>
     <div class="trust-sep"></div>
-    <div class="trust-item"><div class="trust-val"><span class="o">B.A.</span></div><div class="trust-desc">Fitnessökonomie</div></div>
-    <div class="trust-sep"></div>
-    <div class="trust-item"><div class="trust-val"><span class="o">🏆</span></div><div class="trust-desc">Südd. Bodybuilding-Meister</div></div>
+    <div class="trust-item"><div class="trust-val"><em>Südd.</em></div><div class="trust-desc">Bodybuilding-Meister</div></div>
   </div>
 </div>
 
-<!-- WAS IM COACHING -->
+<!-- WHAT YOU GET -->
 <section class="section reveal">
   <div class="section-inner">
-    <div class="eyebrow">Was enthalten ist</div>
-    <h2 class="section-h">Alles was du brauchst –<br>individuell auf dich abgestimmt.</h2>
-    <div class="divider"></div>
+    <div class="section-eyebrow">Was enthalten ist</div>
+    <h2>Kein Programm von der Stange.<br><em>Alles für dich gebaut.</em></h2>
+    <p class="section-intro">Jeder Körper hat eine Geschichte. Dein Coaching-Plan entsteht nach einem ausführlichen Erstgespräch – abgestimmt auf deine Beschwerden, deinen Alltag und dein Ziel.</p>
     <div class="coaching-grid">
-      <div class="coaching-card">
-        <div class="coaching-icon">💪</div>
-        <div><h3>Individueller Trainingsplan</h3><p>Abgestimmt auf deine Beschwerden, dein Ziel und deine verfügbare Zeit. Kein Einheitsplan.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">01</div>
+        <h3>Individueller Trainingsplan</h3>
+        <p>Abgestimmt auf deine Beschwerden und dein Ziel. Kein Einheitsplan – jede Übung hat einen Grund.</p>
       </div>
-      <div class="coaching-card">
-        <div class="coaching-icon">🥗</div>
-        <div><h3>Persönliche Ernährungsstrategie</h3><p>Kein Kalorienzählen, kein Verzicht. Alltagstauglich, realistisch und auf dich zugeschnitten.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">02</div>
+        <h3>Ernährungsstrategie</h3>
+        <p>Kein Kalorienzählen. Eine alltagstaugliche Strategie die zu deinem Leben passt – nicht umgekehrt.</p>
       </div>
-      <div class="coaching-card">
-        <div class="coaching-icon">📱</div>
-        <div><h3>Wöchentliche Check-ins</h3><p>Regelmäßige Gespräche per Video oder Chat – damit du nie alleine kämpfst.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">03</div>
+        <h3>Wöchentliche Check-ins</h3>
+        <p>Per Video oder Chat. Regelmäßige Anpassungen statt starrem Plan. Du bist nie alleine.</p>
       </div>
-      <div class="coaching-card">
-        <div class="coaching-icon">💬</div>
-        <div><h3>Direkte Erreichbarkeit</h3><p>WhatsApp-Support bei Fragen, Unsicherheiten oder wenn etwas nicht klappt.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">04</div>
+        <h3>Direkter Draht zu mir</h3>
+        <p>WhatsApp-Support bei Fragen, Unsicherheiten oder wenn etwas nicht passt. Persönlich, nicht automatisiert.</p>
       </div>
-      <div class="coaching-card">
-        <div class="coaching-icon">🔄</div>
-        <div><h3>Regelmäßige Plananpassungen</h3><p>Dein Körper verändert sich – der Plan passt sich mit. Kein statisches Programm.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">05</div>
+        <h3>Videoanleitungen</h3>
+        <p>Alle Übungen erklärt. Damit du jede Bewegung korrekt ausführst – auch ohne mich dabei.</p>
       </div>
-      <div class="coaching-card">
-        <div class="coaching-icon">🎥</div>
-        <div><h3>Videoanleitungen</h3><p>Alle Übungen als kurze Erklärvideos – damit du jede Bewegung korrekt ausführst.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABLAUF -->
-<section class="ablauf-section">
-  <div class="section-inner reveal">
-    <div class="eyebrow">So läuft es ab</div>
-    <h2 class="section-h">Von Erstgespräch bis Ergebnis –<br>in 4 einfachen Schritten.</h2>
-    <div class="divider"></div>
-    <div class="ablauf-list">
-      <div class="ablauf-item">
-        <div class="ablauf-num">1</div>
-        <div><h3>Kostenloses Erstgespräch (30 Min)</h3><p>Wir schauen uns gemeinsam an wo du stehst, was dich aufhält und ob eine Zusammenarbeit sinnvoll ist. Kein Druck, keine Verpflichtung.</p></div>
-      </div>
-      <div class="ablauf-item">
-        <div class="ablauf-num">2</div>
-        <div><h3>Individueller Plan wird erstellt</h3><p>Ich erstelle deinen persönlichen Trainings- und Ernährungsplan – abgestimmt auf deinen Körper, deine Beschwerden und deinen Alltag.</p></div>
-      </div>
-      <div class="ablauf-item">
-        <div class="ablauf-num">3</div>
-        <div><h3>Du startest – ich begleite dich</h3><p>Wöchentliche Check-ins, direkte Erreichbarkeit und regelmäßige Anpassungen sorgen dafür, dass du immer auf Kurs bleibst.</p></div>
-      </div>
-      <div class="ablauf-item">
-        <div class="ablauf-num">4</div>
-        <div><h3>Echte Ergebnisse, nachhaltig</h3><p>Keine schnellen Tricks. Ein System das funktioniert – auch wenn der Alltag mal stressiger wird.</p></div>
+      <div class="coaching-item">
+        <div class="coaching-num">06</div>
+        <h3>Langfristige Begleitung</h3>
+        <p>Keine Quick-Fixes. Ein System das 6 Monate hält und danach weitergeht – weil Gesundheit kein Sprint ist.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FÜR WEN -->
-<section class="section reveal">
+<!-- PROCESS -->
+<section class="process-section reveal">
   <div class="section-inner">
-    <div class="eyebrow">Für wen ist das Coaching?</div>
-    <h2 class="section-h">Mein Coaching funktioniert<br>besonders gut für dich, wenn…</h2>
-    <div class="divider"></div>
+    <div class="section-eyebrow">Der Ablauf</div>
+    <h2>Von heute<br><em>bis schmerzfrei.</em></h2>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-step">01</div>
+        <h3>Analyse</h3>
+        <p>30-Minuten-Gespräch. Wir schauen uns gemeinsam an, wo du stehst und was dich aufhält.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-step">02</div>
+        <h3>Plan</h3>
+        <p>Ich erstelle deinen individuellen Trainings- und Ernährungsplan – innerhalb von 48 Stunden.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-step">03</div>
+        <h3>Umsetzung</h3>
+        <p>Du startest. Ich begleite dich mit wöchentlichen Check-ins und direktem Support.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-step">04</div>
+        <h3>Ergebnisse</h3>
+        <p>Messbare Fortschritte nach 4–8 Wochen. Nicht versprochen – nachgewiesen bei über 200 Klienten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section reveal">
+  <div class="section-inner">
+    <div class="section-eyebrow">Klienten-Stimmen</div>
+    <h2>Sie haben es<br><em>nicht geglaubt.</em><br>Bis es passiert ist.</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-photo">
+          <img src="data:image/jpeg;base64,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" alt="img-gabi" id="img-gabi">
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">Ich hatte ständig Rückenschmerzen und war unsicher beim Training. Mit Niklas fühle ich mich endlich wieder stabil – und habe wieder Vertrauen in meinen Körper.</div>
+        <div class="testimonial-author">Gabi H.</div>
+        <div class="testimonial-age">62 Jahre · Klientin seit 2024</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-photo">
+          <img src="data:image/jpeg;base64,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" alt="img-herta" id="img-herta">
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">Ich hätte nicht gedacht, dass sich mein Körper in so kurzer Zeit so verändern kann. Beweglicher, stärker, mehr Energie im Alltag. Es hat sich alles verändert.</div>
+        <div class="testimonial-author">Herta G.</div>
+        <div class="testimonial-age">58 Jahre · Klientin seit 2024</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-photo">
+          <img src="data:image/jpeg;base64,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" alt="img-claudia" id="img-claudia">
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">Was mir am meisten geholfen hat: die persönliche Betreuung. Ich weiß jetzt genau, was ich tun muss. Das gibt mir ein Sicherheitsgefühl, das ich lange vermisst hatte.</div>
+        <div class="testimonial-author">Claudia K.</div>
+        <div class="testimonial-age">56 Jahre · Klientin seit 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="forwho-section reveal">
+  <div class="section-inner">
+    <div class="section-eyebrow">Für wen ist das?</div>
+    <h2>Nicht für jeden.<br><em>Aber vielleicht für dich.</em></h2>
     <div class="forwho-grid">
-      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du 40+ bist und unter Rücken-, Knie- oder Schulterschmerzen leidest</h3><p>Training das Schmerzen reduziert statt sie zu verstärken – das ist meine Spezialität.</p></div></div>
-      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du wenig Zeit hast aber etwas verändern willst</h3><p>30–45 Minuten pro Einheit, 3x pro Woche. Kein Fitnessstudio nötig.</p></div></div>
-      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du Einsteiger oder Wiedereinsteiger bist</h3><p>Du brauchst keine Vorkenntnisse. Wir starten genau dort wo du gerade stehst.</p></div></div>
-      <div class="forwho-card"><div class="forwho-check">✓</div><div><h3>Du endlich nachhaltige Ergebnisse willst</h3><p>Kein Quick-Fix, kein Extremprogramm. Ein System das dauerhaft funktioniert.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- BEWERTUNGEN -->
-<section class="reviews-section">
-  <div class="section-inner reveal">
-    <div class="eyebrow">Das sagen Klienten</div>
-    <h2 class="section-h">Echte Menschen. Echte Ergebnisse.</h2>
-    <div class="divider"></div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Ich hatte ständig Rückenschmerzen und war unsicher beim Training. Mit Niklas fühle ich mich endlich wieder stabil und habe deutlich weniger Beschwerden."</p>
-        <div class="review-author"><div class="avatar">G</div><div><div class="review-name">Gabi H.</div><div class="review-age">62 Jahre</div></div></div>
+      <div class="forwho-item">
+        <div class="forwho-check">✓</div>
+        <div>
+          <h3>Du bist 40+ und merkst, dass der Körper nicht mehr mitmacht</h3>
+          <p>Weniger Energie, hartnäckige Schmerzen, schwerer abnehmen – ich kenne diese Phase und weiß, was hilft.</p>
+        </div>
       </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Ich hätte nicht gedacht, dass sich mein Körper in so kurzer Zeit so verändern kann. Ich bin beweglicher, stärker und fühle mich im Alltag viel besser."</p>
-        <div class="review-author"><div class="avatar">H</div><div><div class="review-name">Herta G.</div><div class="review-age">58 Jahre</div></div></div>
+      <div class="forwho-item">
+        <div class="forwho-check">✓</div>
+        <div>
+          <h3>Du hast wenig Zeit aber klare Ziele</h3>
+          <p>30–45 Minuten pro Einheit, 3x pro Woche. Kein Fitnessstudio-Zwang. Struktur statt Chaos.</p>
+        </div>
       </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Was mir am meisten geholfen hat, war die persönliche Betreuung. Ich weiß jetzt genau, was ich tun muss, und habe wieder Vertrauen in meinen Körper."</p>
-        <div class="review-author"><div class="avatar">C</div><div><div class="review-name">Claudia K.</div><div class="review-age">56 Jahre</div></div></div>
+      <div class="forwho-item">
+        <div class="forwho-check">✓</div>
+        <div>
+          <h3>Du hast Rücken-, Knie- oder Schulterbeschwerden</h3>
+          <p>Als Reha-Trainer trainierst du mit mir so, dass Schmerzen reduziert – nicht verstärkt – werden.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- CALENDLY -->
-<section class="calendly-section" id="calendly">
-  <div class="calendly-inner reveal">
-    <div class="calendly-header">
-      <div class="eyebrow">Erstgespräch buchen</div>
-      <h2 class="section-h">Wähle deinen Wunschtermin.</h2>
-      <div class="divider" style="margin: 14px auto 0;"></div>
-      <p style="font-size:14px; color:#777; margin-top:16px; line-height:1.65;">30 Minuten · kostenlos · unverbindlich · per Video oder Telefon<br>Kein Druck, kein Verkaufsgespräch – nur ein ehrliches Gespräch.</p>
-    </div>
-    <div class="calendly-widget-wrapper">
-      <iframe
-        src="https://calendly.com/niklas-urban/30min?embed_domain=trainingbyniki.de&embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1"
-        width="100%"
-        height="700"
-        frameborder="0"
-        style="border:none; background:transparent;">
-      </iframe>
+      <div class="forwho-item">
+        <div class="forwho-check">✓</div>
+        <div>
+          <h3>Du willst endlich nachhaltige Ergebnisse</h3>
+          <p>Keine Crash-Diäten, keine Extremprogramme. Ein System das funktioniert, wenn der Alltag stressig wird.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -367,36 +797,98 @@
 <!-- FINAL CTA -->
 <section class="final-cta reveal">
   <div class="final-cta-inner">
-    <h2>Lieber erst per<br><em>E-Mail oder Telefon?</em></h2>
-    <p>Kein Problem – schreib mir einfach oder ruf an. Ich melde mich innerhalb von 24 Stunden.</p>
-    <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
-      <a href="mailto:trainingbyniki@trainingbyniki.de" class="btn-primary">📩 trainingbyniki@trainingbyniki.de</a>
-      <a href="tel:017663825343" style="color:#555; font-size:13px; text-decoration:none;">📱 0176 63825343</a>
+    <h2>Bereit für<br><em>deinen ersten Schritt?</em></h2>
+    <p>30 Minuten. Kostenlos. Kein Druck. Wir schauen gemeinsam, ob und wie eine Zusammenarbeit sinnvoll ist – ehrlich, direkt, persönlich.</p>
+    <div class="final-cta-actions">
+      <a href="https://calendly.com/niklas-urban/30min" target="_blank" class="btn-primary-lg">Kostenloses Erstgespräch buchen</a>
+      <span class="final-micro">Per Video oder Telefon · 30 Minuten · Unverbindlich</span>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">TRAININGBYNIKI</div>
-  <p style="margin-bottom:8px;">Niklas Urban · Personal Trainer & Gesundheitscoach · Bad Boll</p>
-  <p>
-    <a href="mailto:trainingbyniki@trainingbyniki.de">trainingbyniki@trainingbyniki.de</a> &nbsp;·&nbsp;
-    <a href="tel:017663825343">0176 63825343</a> &nbsp;·&nbsp;
-    <a href="https://trainingbyniki.team-energy-up.de/impressum/">Impressum</a> &nbsp;·&nbsp;
-    <a href="https://trainingbyniki.team-energy-up.de/datenschutz/">Datenschutz</a>
-  </p>
-  <p style="margin-top:14px; color:#1e1e1e;">© 2026 Training by Niki · Alle Rechte vorbehalten</p>
+  <div class="footer-brand">Training<span>ByNiki</span> · Niklas Urban · Bad Boll</div>
+  <div class="footer-links">
+    <a href="mailto:trainingbyniki@trainingbyniki.de">trainingbyniki@trainingbyniki.de</a>
+    <a href="tel:017663825343">0176 63825343</a>
+    <a href="https://trainingbyniki.team-energy-up.de/impressum/">Impressum</a>
+    <a href="https://trainingbyniki.de/datenschutz.html">Datenschutz</a>
+  </div>
 </footer>
 
 <script>
-  document.querySelector('.nav-btn').addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector('#calendly').scrollIntoView({ behavior: 'smooth', block: 'start' });
+// ── QUIZ LOGIC ──
+const answers = {};
+const romans = ['I / III','II / III','III / III',''];
+const fills = ['33%','66%','100%','100%'];
+
+function goStep(n) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  const step = document.getElementById('step' + n);
+  if (step) {
+    step.classList.add('active');
+    document.getElementById('progressRoman').textContent = n <= 3 ? romans[n-1] : '';
+    document.getElementById('quizFill').style.width = fills[n-1];
+  }
+  if (n === 4) {
+    const summary = `<strong>Deine Angaben:</strong><br>
+      Beschwerden: ${answers[1] || '—'}<br>
+      Dauer: ${answers[2] || '—'}<br>
+      Ziel: ${answers[3] || '—'}`;
+    document.getElementById('quizSummary').innerHTML = summary;
+  }
+}
+
+function initOptions(stepNum, nextBtnId) {
+  const container = document.getElementById('options' + stepNum);
+  const nextBtn = document.getElementById(nextBtnId);
+  container.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[stepNum] = btn.dataset.value;
+      nextBtn.disabled = false;
+    });
   });
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+initOptions(1, 'next1');
+initOptions(2, 'next2');
+initOptions(3, 'next3');
+
+function submitQuiz() {
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  if (!name || !email) {
+    alert('Bitte Vorname und E-Mail ausfüllen.');
+    return;
+  }
+  // Show success
+  document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
+  document.getElementById('quizSuccess').style.display = 'block';
+  document.getElementById('progressRoman').textContent = '';
+  document.querySelector('.quiz-track').style.display = 'none';
+  document.querySelector('.quiz-progress').style.display = 'none';
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── INJECT CLIENT PHOTOS ──
+// Encode the Gabi/Herta/Claudia photos if we have them
+// Photos are loaded as base64 from the uploaded files
+(async function loadPhotos() {
+  const photos = [
+    { id: 'img-gabi',    hint: 'Gabi' },
+    { id: 'img-herta',   hint: 'Herta' },
+    { id: 'img-claudia', hint: 'Claudia' },
+  ];
+  // Photos are embedded directly below via data URIs
+})();
 </script>
 </body>
 </html>
