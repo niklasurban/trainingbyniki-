@@ -519,15 +519,46 @@ function go(n){
   });
 });
 
-function submit(){
+async function submit(){
   const n=document.getElementById('fn').value.trim();
   const e=document.getElementById('fe').value.trim();
+  const t=document.getElementById('ft').value.trim();
   if(!n||!e){alert('Bitte Vorname und E-Mail eintragen.');return}
-  document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
-  document.getElementById('quizHeader').style.display='none';
-  document.querySelector('.quiz-prog').style.display='none';
-  document.querySelector('.prog-bar').style.display='none';
-  document.getElementById('done').style.display='block';
+
+  const btn=document.querySelector('#s4 .btn-fw');
+  btn.textContent='Wird gesendet...';
+  btn.disabled=true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/mdarjlnd', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        vorname: n,
+        email: e,
+        telefon: t || '—',
+        beschwerde: ans[1] || '—',
+        dauer: ans[2] || '—',
+        ziel: ans[3] || '—',
+        _subject: 'Neue Coaching-Anfrage: ' + n
+      })
+    });
+    if(res.ok){
+      document.querySelectorAll('.quiz-step').forEach(s=>s.style.display='none');
+      document.getElementById('quizHeader').style.display='none';
+      document.querySelector('.quiz-prog').style.display='none';
+      document.querySelector('.prog-bar').style.display='none';
+      document.getElementById('done').style.display='block';
+    } else {
+      btn.textContent='Termin sichern →';
+      btn.disabled=false;
+      alert('Etwas hat nicht geklappt. Bitte versuch es nochmal oder schreib mir direkt.');
+    }
+  } catch(err){
+    btn.textContent='Termin sichern →';
+    btn.disabled=false;
+    alert('Keine Verbindung. Bitte versuch es nochmal.');
+  }
 }
 
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.06});
